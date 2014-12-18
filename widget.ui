@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>603</width>
-    <height>552</height>
+    <width>684</width>
+    <height>562</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="SelectFigure">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>20</y>
-     <width>141</width>
+     <x>520</x>
+     <y>10</y>
+     <width>98</width>
      <height>26</height>
     </rect>
    </property>
@@ -38,19 +38,19 @@
     </property>
    </item>
   </widget>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="Rotation">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>80</y>
-     <width>141</width>
+     <x>523</x>
+     <y>67</y>
+     <width>145</width>
      <height>91</height>
     </rect>
    </property>
    <property name="title">
     <string>Rotation</string>
    </property>
-   <widget class="QSlider" name="horizontalSlider">
+   <widget class="QSlider" name="RXValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -63,7 +63,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_2">
+   <widget class="QSlider" name="RYValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -76,7 +76,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_3">
+   <widget class="QSlider" name="RZValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -90,19 +90,19 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QGroupBox" name="LightPosition">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>180</y>
-     <width>141</width>
+     <x>523</x>
+     <y>164</y>
+     <width>145</width>
      <height>91</height>
     </rect>
    </property>
    <property name="title">
     <string>Light position</string>
    </property>
-   <widget class="QSlider" name="horizontalSlider_6">
+   <widget class="QSlider" name="LPZValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -115,7 +115,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_5">
+   <widget class="QSlider" name="LPXValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -128,7 +128,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_4">
+   <widget class="QSlider" name="LPYValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -142,19 +142,19 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_3">
+  <widget class="QGroupBox" name="FigureColor">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>270</y>
-     <width>141</width>
+     <x>523</x>
+     <y>261</y>
+     <width>145</width>
      <height>91</height>
     </rect>
    </property>
    <property name="title">
     <string>Figure color</string>
    </property>
-   <widget class="QSlider" name="horizontalSlider_9">
+   <widget class="QSlider" name="FCBValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -167,7 +167,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_7">
+   <widget class="QSlider" name="FCGValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -180,7 +180,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_8">
+   <widget class="QSlider" name="FCRValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -194,29 +194,29 @@
     </property>
    </widget>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="Approximation">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>60</y>
-     <width>141</width>
+     <x>523</x>
+     <y>42</y>
+     <width>49</width>
      <height>24</height>
     </rect>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox_4">
+  <widget class="QGroupBox" name="LightColor">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>360</y>
-     <width>141</width>
+     <x>523</x>
+     <y>357</y>
+     <width>145</width>
      <height>91</height>
     </rect>
    </property>
    <property name="title">
     <string>Light color</string>
    </property>
-   <widget class="QSlider" name="horizontalSlider_12">
+   <widget class="QSlider" name="LCBValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -229,7 +229,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_11">
+   <widget class="QSlider" name="LCRValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -242,7 +242,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_10">
+   <widget class="QSlider" name="LCGValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -255,26 +255,26 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <zorder>horizontalSlider_12</zorder>
-   <zorder>horizontalSlider_11</zorder>
-   <zorder>horizontalSlider_10</zorder>
-   <zorder>horizontalSlider_12</zorder>
-   <zorder>horizontalSlider_11</zorder>
-   <zorder>horizontalSlider_10</zorder>
+   <zorder>LCBValue</zorder>
+   <zorder>LCRValue</zorder>
+   <zorder>LCGValue</zorder>
+   <zorder>LCBValue</zorder>
+   <zorder>LCRValue</zorder>
+   <zorder>LCGValue</zorder>
   </widget>
-  <widget class="QGroupBox" name="groupBox_5">
+  <widget class="QGroupBox" name="AmbientColor">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>450</y>
-     <width>141</width>
+     <x>523</x>
+     <y>454</y>
+     <width>145</width>
      <height>91</height>
     </rect>
    </property>
    <property name="title">
     <string>Ambient color</string>
    </property>
-   <widget class="QSlider" name="horizontalSlider_15">
+   <widget class="QSlider" name="ACBValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -287,7 +287,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_14">
+   <widget class="QSlider" name="ACRValue">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -300,7 +300,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_13">
+   <widget class="QSlider" name="ACGValue">
     <property name="geometry">
      <rect>
       <x>10</x>
