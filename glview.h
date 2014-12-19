@@ -3,33 +3,36 @@
 
 #include <QWidget>
 #include <QGLWidget>
+#include <QVector3D>
+#include <QVector>
+#include <QDebug>
 
-class XGLView : public QGLWidget
+class GLView : public QGLWidget
 {
     Q_OBJECT
 public:
-    explicit XGLView(QWidget *parent = 0);
+    explicit GLView(QWidget *parent = 0);
 
 protected:
     void initializeGL();
     void paintGL();
     void resizeGL(int width, int height);
 
-    void addToMassive(QVector <QVector3D> tempPoint, QVector3D n); // ????
+    void addToMassive(QVector <QVector3D> tempPoint, QVector3D n);
 
     QVector3D spherePoint(double phi, double psi);
-    void countSpherePoints(); // ????
+    void countSpherePoints();
 
     QVector3D torusPoint(double phi, double psi);
-    void countTorusPoints(); // ????
+    void countTorusPoints(); 
 
     QVector <QVector3D> yCharPoint();
-    void countYCharPoints(); // ????
+    void countYCharPoints(); 
 
 private:
-    QVector <GLfloat> vertex;
-    QVector <GLfloat> normal;
-    QVector <GLuint> index; // ????
+    QVector<GLfloat> vertex;
+    QVector<GLfloat> normal;
+    QVector<GLuint> index; 
 
     float RXValue; // RotationXValue
     float RYValue;
@@ -51,7 +54,6 @@ private:
     float ACGValue;
     float ACBValue;
 
-    double materialShiness; // ????
     double radius;
     double count;
 

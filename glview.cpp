@@ -1,10 +1,11 @@
-#include "XGLView.h"
+#include "GLView.h"
+#define pi 3.1415
 
-XGLView::XGLView(QWidget *parent) :
+GLView::GLView(QWidget *parent) :
     QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
 	radius = 1;
-	count = 20;
+    count = 20;
 
 	RXValue = 0;
 	RYValue = 0;
@@ -14,23 +15,22 @@ XGLView::XGLView(QWidget *parent) :
 	LPYValue = 0;
 	LPZValue = 10;
 
-	FCRValue = 1;
-	FCGValue = 0.1;
-	FCBValue = 1;
+    FCRValue = 0;
+    FCGValue = 0;
+    FCBValue = 1;
 
 	LCRValue = 1;
 	LCGValue = 1;
 	LCBValue = 1;
 
-	ACRValue = 1;
-	ACGValue = 1;
-	ACBValue = 1;
+    ACRValue = 0;
+    ACGValue = 0;
+    ACBValue = 0;
 
-	materialShiness = 10;
-	figure = "sphere";
+    figure = "Sphere";
 }
 
-QVector3D XGLView::spherePoint(double phi, double psi) {
+QVector3D GLView::spherePoint(double phi, double psi) {
     QVector3D point;
     point.setX((double)(radius * sin(phi) * cos(psi)));
     point.setY((double)(radius * sin(phi) * sin(psi)));
@@ -38,7 +38,7 @@ QVector3D XGLView::spherePoint(double phi, double psi) {
     return point;
 }
 
-QVector3D XGLView::torusPoint(double phi, double psi) {
+QVector3D GLView::torusPoint(double phi, double psi) {
     QVector3D point;
     point.setX((double)((1 + 0.5 * cos(phi)) * cos(psi)));
     point.setY((double)((1 + 0.5 * cos(phi)) * sin(psi)));
@@ -46,38 +46,49 @@ QVector3D XGLView::torusPoint(double phi, double psi) {
     return point;
 }
 
-QVector<QVector3D> XGLView::yCharPoint() {
+QVector<QVector3D> GLView::yCharPoint() {
     QVector<QVector3D> yCharPoints;
 
-    yCharPoints.push_back(QVector3D(-0.25, -1, 0.5));
-    yCharPoints.push_back(QVector3D(0, -1, 0.5));
-    yCharPoints.push_back(QVector3D(0, -1, -0.5));
-    yCharPoints.push_back(QVector3D(0, 0, -0.5));
-    yCharPoints.push_back(QVector3D(0, 0, 0.5));
-    yCharPoints.push_back(QVector3D(0.5, 1, -0.5));
-    yCharPoints.push_back(QVector3D(0.5, 1, 0.5));
-    yCharPoints.push_back(QVector3D(-0.5, 1, -0.5));
-    yCharPoints.push_back(QVector3D(-0.5, 1, 0.5));
+    yCharPoints.push_back(QVector3D(0, 0, 0));
+
+    yCharPoints.push_back(QVector3D(-0.25, -1, 0.25)); // 1
+    yCharPoints.push_back(QVector3D(0.25, -1, 0.25));  // 2
+    yCharPoints.push_back(QVector3D(0.25, 0, 0.25));   // 3
+    yCharPoints.push_back(QVector3D(-0.25, 0, 0.25));  // 4
+    yCharPoints.push_back(QVector3D(0.25, -1, -0.25)); // 5
+    yCharPoints.push_back(QVector3D(0.25, 0, -0.25));  // 6
+    yCharPoints.push_back(QVector3D(-0.25, -1, -0.25));// 7
+    yCharPoints.push_back(QVector3D(-0.25, 0, -0.25)); // 8
+
+    yCharPoints.push_back(QVector3D(0.75, 1, 0.25));   // 9
+    yCharPoints.push_back(QVector3D(0.75, 1, -0.25));  // 10
+    yCharPoints.push_back(QVector3D(0.25, 1, -0.25));  // 11
+    yCharPoints.push_back(QVector3D(0.25, 1, 0.25));   // 12
+
+    yCharPoints.push_back(QVector3D(-0.25, 1, 0.25));  // 13
+    yCharPoints.push_back(QVector3D(-0.25, 1, -0.25)); // 14
+    yCharPoints.push_back(QVector3D(-0.75, 1, -0.25)); // 15
+    yCharPoints.push_back(QVector3D(-0.75, 1, 0.25));  // 16
 
     return yCharPoints;
 }
 
-void XGLView::addToMassive(QVector <QVector3D> tempPoint, QVector3D normal){
+void GLView::addToMassive(QVector <QVector3D> tempPoint, QVector3D tempNormal){
     unsigned long long size = tempPoint.size();
     for(unsigned long long i = 0; i < size; i++) {
         vertex.push_back(tempPoint[i].x());
         vertex.push_back(tempPoint[i].y());
         vertex.push_back(tempPoint[i].z());
 
-        normal.push_back(n.x());
-        normal.push_back(n.y());
-        normal.push_back(n.z());
+        normal.push_back(tempNormal.x());
+        normal.push_back(tempNormal.y());
+        normal.push_back(tempNormal.z());
 
         index.push_back(index.size());
     }
 }
 
-void XGLView::countSpherePoints() {
+void GLView::countSpherePoints() {
     vertex.clear();
     normal.clear();
     index.clear();
@@ -88,7 +99,7 @@ void XGLView::countSpherePoints() {
     double psi = 0;
 
     QVector <QVector3D> tempPoint;
-    QVector3D normal;
+    QVector3D tempNormal;
 
     for (int i = 0; i < count; phi += step_phi, i++) {
         psi = 0;
@@ -97,14 +108,14 @@ void XGLView::countSpherePoints() {
 	        tempPoint.push_back(spherePoint(phi + step_phi, psi));
 	        tempPoint.push_back(spherePoint(phi + step_phi, psi + step_psi));
 	        tempPoint.push_back(spherePoint(phi, psi + step_psi));
-	        normal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
-	        addToMassive(tempPoint, normal);
+            tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+            addToMassive(tempPoint, tempNormal);
 	        tempPoint.clear();
         }
     }
 }
 
-void XGLView::countTorusPoints() {
+void GLView::countTorusPoints() {
     vertex.clear();
     normal.clear();
     index.clear();
@@ -115,7 +126,7 @@ void XGLView::countTorusPoints() {
     double psi = 0;
 
     QVector <QVector3D> tempPoint;
-    QVector3D normal;
+    QVector3D tempNormal;
 
     for(int i = 0; i < count; phi += step_phi, i++) {
         psi = 0;
@@ -124,104 +135,184 @@ void XGLView::countTorusPoints() {
 	        tempPoint.push_back(torusPoint(phi + step_phi, psi));
 	        tempPoint.push_back(torusPoint(phi + step_phi, psi + step_psi));
 	        tempPoint.push_back(torusPoint(phi, psi + step_psi));
-	        normal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
-	        addToMassive(tempPoint, normal);
+            tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+            addToMassive(tempPoint, tempNormal);
 	        tempPoint.clear();
         }
     }
 }
 
-void XGLView::countYPoints() {
+void GLView::countYCharPoints() {
     vertex.clear();
     normal.clear();
     index.clear();
 
     QVector <QVector3D> tempY;
-    tempY = yPoint();
+    tempY = yCharPoint();
     QVector <QVector3D> tempPoint;
-    QVector3D n;
+    QVector3D tempNormal;
 
+
+    /*  down  */
     tempPoint.push_back(tempY[1]);
     tempPoint.push_back(tempY[2]);
     tempPoint.push_back(tempY[3]);
     tempPoint.push_back(tempY[4]);
-
-    normal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
-    addToMassive(tempPoint, normal);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
     tempPoint.clear();
 
-    tempPoint.push_back(tempY[1]);
+
     tempPoint.push_back(tempY[2]);
-    tempPoint.push_back(tempY[3]);
-    tempPoint.push_back(tempY[4]);
-
-    normal = QVector3D::normal(tempPoint[3] - tempPoint[0], tempPoint[1] - tempPoint[0]);
-    addToMassive(tempPoint, normal);
-    tempPoint.clear();
-
-    tempPoint.push_back(tempY[4]);
-    tempPoint.push_back(tempY[3]);
     tempPoint.push_back(tempY[5]);
     tempPoint.push_back(tempY[6]);
-
-    normal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
-    addToMassive(tempPoint, normal);
+    tempPoint.push_back(tempY[3]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
     tempPoint.clear();
 
-    tempPoint.push_back(tempY[4]);
-    tempPoint.push_back(tempY[3]);
+
     tempPoint.push_back(tempY[5]);
+    tempPoint.push_back(tempY[7]);
+    tempPoint.push_back(tempY[8]);
     tempPoint.push_back(tempY[6]);
-
-    normal = QVector3D::normal(tempPoint[3] - tempPoint[0], tempPoint[1] - tempPoint[0]);
-    addToMassive(tempPoint, normal);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
     tempPoint.clear();
 
-    tempPoint.push_back(tempY[4]);
-    tempPoint.push_back(tempY[3]);
+
     tempPoint.push_back(tempY[7]);
+    tempPoint.push_back(tempY[1]);
+    tempPoint.push_back(tempY[4]);
     tempPoint.push_back(tempY[8]);
-
-    normal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
-    addToMassive(tempPoint, normal);
-
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
     tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[7]);
+    tempPoint.push_back(tempY[5]);
+    tempPoint.push_back(tempY[2]);
+    tempPoint.push_back(tempY[1]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    /*  left  */
     tempPoint.push_back(tempY[4]);
     tempPoint.push_back(tempY[3]);
-    tempPoint.push_back(tempY[7]);
-    tempPoint.push_back(tempY[8]);
+    tempPoint.push_back(tempY[13]);
+    tempPoint.push_back(tempY[16]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
 
-    normal = QVector3D::normal(tempPoint[3] - tempPoint[0], tempPoint[1] - tempPoint[0]);
-    addToMassive(tempPoint, normal);
+
+    tempPoint.push_back(tempY[3]);
+    tempPoint.push_back(tempY[6]);
+    tempPoint.push_back(tempY[14]);
+    tempPoint.push_back(tempY[13]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[6]);
+    tempPoint.push_back(tempY[8]);
+    tempPoint.push_back(tempY[15]);
+    tempPoint.push_back(tempY[14]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[8]);
+    tempPoint.push_back(tempY[4]);
+    tempPoint.push_back(tempY[16]);
+    tempPoint.push_back(tempY[15]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[16]);
+    tempPoint.push_back(tempY[13]);
+    tempPoint.push_back(tempY[14]);
+    tempPoint.push_back(tempY[15]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    /*  right  */
+    tempPoint.push_back(tempY[4]);
+    tempPoint.push_back(tempY[3]);
+    tempPoint.push_back(tempY[9]);
+    tempPoint.push_back(tempY[12]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[3]);
+    tempPoint.push_back(tempY[6]);
+    tempPoint.push_back(tempY[10]);
+    tempPoint.push_back(tempY[9]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[6]);
+    tempPoint.push_back(tempY[8]);
+    tempPoint.push_back(tempY[11]);
+    tempPoint.push_back(tempY[10]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[8]);
+    tempPoint.push_back(tempY[4]);
+    tempPoint.push_back(tempY[12]);
+    tempPoint.push_back(tempY[11]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
+    tempPoint.clear();
+
+
+    tempPoint.push_back(tempY[12]);
+    tempPoint.push_back(tempY[9]);
+    tempPoint.push_back(tempY[10]);
+    tempPoint.push_back(tempY[11]);
+    tempNormal = QVector3D::normal(tempPoint[1] - tempPoint[0], tempPoint[3] - tempPoint[0]);
+    addToMassive(tempPoint, tempNormal);
     tempPoint.clear();
 }
 
-void XGLView::initializeGL() {
+void GLView::initializeGL() {
 
     glClearColor(ACRValue, ACGValue, ACBValue, 1);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
 
-    qDebug() << "trueInitialize" << endl;
 }
 
-void XGLView::paintGL() {
+void GLView::paintGL() {
 
-    if (figure == "sphere") {
-       // glEnable(GL_CULL_FACE);
+    if (figure == "Sphere") {
         countSpherePoints();
         glDepthRange (0, 1);
     }
-    else if (figure == "torus") {
-       // glEnable(GL_CULL_FACE);
+    else if (figure == "Torus") {
         countTorusPoints();
         glDepthRange (1, 0);
     }
-    else if (figure == "y") {
-        //glDisable(GL_CULL_FACE);
-        glDepthRange (1, 0);
-        countYPoints();
+    else if (figure == "Ychar") {
+        glDepthRange (0, 1);
+        countYCharPoints();
     }
 
     glClearColor(ACRValue, ACGValue, ACBValue, 1);
@@ -262,87 +353,98 @@ void XGLView::paintGL() {
     glDrawElements(GL_QUADS, index.size(), GL_UNSIGNED_INT, index.data());
 }
 
-void XGLView::setRXValue(int value) {
+void GLView::resizeGL(int width, int height){
+    int side = qMin(width, height);
+    glViewport((width - side) / 2, (height - side) / 2, side, side);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW);
+}
+
+
+
+void GLView::setRXValue(int value) {
 	RXValue = (double)value;
 	updateGL();
 }
 
-void XGLView::setRYValue(int value) {
+void GLView::setRYValue(int value) {
 	RYValue = (double)value;
 	updateGL();
 }
 
-void XGLView::setRZValue(int value) {
+void GLView::setRZValue(int value) {
 	RZValue = (double)value;
 	updateGL();
 }
 
-void XGLView::setLPXValue(int value) {
+void GLView::setLPXValue(int value) {
 	LPXValue = (float)value;
 	updateGL();
 }
 
-void XGLView::setLPYValue(int value) {
+void GLView::setLPYValue(int value) {
 	LPYValue = (float)value;
 	updateGL();
 }
 
-void XGLView::setLPZValue(int value) {
+void GLView::setLPZValue(int value) {
 	LPZValue = (float)value;
 	updateGL();
 }
 
-void XGLView::setFCRValue(int value) {
+void GLView::setFCRValue(int value) {
 	FCRValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setFCGValue(int value) {
+void GLView::setFCGValue(int value) {
 	FCGValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setFCBValue(int value) {
+void GLView::setFCBValue(int value) {
 	FCBValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setLCRValue(int value) {
+void GLView::setLCRValue(int value) {
 	LCRValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setLCGValue(int value) {
+void GLView::setLCGValue(int value) {
 	LCGValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setLCBValue(int value) {
+void GLView::setLCBValue(int value) {
 	LCBValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setACRValue(int value) {
+void GLView::setACRValue(int value) {
 	ACRValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setACGValue(int value) {
+void GLView::setACGValue(int value) {
 	ACGValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setACBValue(int value) {
+void GLView::setACBValue(int value) {
 	ACBValue = (float)value / 255;
 	updateGL();
 }
 
-void XGLView::setApproximation(int value) {
+void GLView::setApproximation(int value) {
 	count = value;
 	updateGL();
 }
 
-void XGLView::changeFigure(QString newFigure) {
+void GLView::changeFigure(QString newFigure) {
 	figure = newFigure;
 	updateGL();
 }
