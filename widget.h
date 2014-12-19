@@ -27,6 +27,12 @@ public:
 private slots:
 
 
+    void on_SelectFigure_activated(const QString &arg1);
+
+    void on_SelectFigure_currentIndexChanged(const QString &arg1);
+
+    void on_RXValue_valueChanged(int value);
+
 private:
     Ui::Widget *ui;
 };

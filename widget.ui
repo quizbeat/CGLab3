@@ -13,309 +13,550 @@
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QComboBox" name="SelectFigure">
+  <widget class="GLView" name="GLView" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>501</width>
+     <height>541</height>
+    </rect>
+   </property>
+   <zorder>RXValue</zorder>
+   <zorder>RXValue</zorder>
+  </widget>
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>520</x>
      <y>10</y>
-     <width>98</width>
-     <height>26</height>
+     <width>151</width>
+     <height>541</height>
     </rect>
    </property>
-   <item>
-    <property name="text">
-     <string>Sphere</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Thorus</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Ychar</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QGroupBox" name="Rotation">
-   <property name="geometry">
-    <rect>
-     <x>523</x>
-     <y>67</y>
-     <width>145</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Rotation</string>
-   </property>
-   <widget class="QSlider" name="RXValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="RYValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="RZValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="LightPosition">
-   <property name="geometry">
-    <rect>
-     <x>523</x>
-     <y>164</y>
-     <width>145</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Light position</string>
-   </property>
-   <widget class="QSlider" name="LPZValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="LPXValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="LPYValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="FigureColor">
-   <property name="geometry">
-    <rect>
-     <x>523</x>
-     <y>261</y>
-     <width>145</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Figure color</string>
-   </property>
-   <widget class="QSlider" name="FCBValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="FCGValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="FCRValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QSpinBox" name="Approximation">
-   <property name="geometry">
-    <rect>
-     <x>523</x>
-     <y>42</y>
-     <width>49</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="LightColor">
-   <property name="geometry">
-    <rect>
-     <x>523</x>
-     <y>357</y>
-     <width>145</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Light color</string>
-   </property>
-   <widget class="QSlider" name="LCBValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="LCRValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="LCGValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <zorder>LCBValue</zorder>
-   <zorder>LCRValue</zorder>
-   <zorder>LCGValue</zorder>
-   <zorder>LCBValue</zorder>
-   <zorder>LCRValue</zorder>
-   <zorder>LCGValue</zorder>
-  </widget>
-  <widget class="QGroupBox" name="AmbientColor">
-   <property name="geometry">
-    <rect>
-     <x>523</x>
-     <y>454</y>
-     <width>145</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Ambient color</string>
-   </property>
-   <widget class="QSlider" name="ACBValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="ACRValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="ACGValue">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>121</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QComboBox" name="SelectFigure">
+      <item>
+       <property name="text">
+        <string>Sphere</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Thorus</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ychar</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSpinBox" name="Approximation"/>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="Rotation">
+      <property name="title">
+       <string>Rotation</string>
+      </property>
+      <widget class="QSlider" name="RXValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="RYValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="RZValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="LightPosition">
+      <property name="title">
+       <string>Light position</string>
+      </property>
+      <widget class="QSlider" name="LPZValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="LPXValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="LPYValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="FigureColor">
+      <property name="title">
+       <string>Figure color</string>
+      </property>
+      <widget class="QSlider" name="FCBValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="FCGValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="FCRValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="LightColor">
+      <property name="title">
+       <string>Light color</string>
+      </property>
+      <widget class="QSlider" name="LCBValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="LCRValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="LCGValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="AmbientColor">
+      <property name="title">
+       <string>Ambient color</string>
+      </property>
+      <widget class="QSlider" name="ACBValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="ACRValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="ACGValue">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GLView</class>
+   <extends>QWidget</extends>
+   <header>glview.h</header>
+   <container>1</container>
+   <slots>
+    <slot>setRXValue()</slot>
+    <slot>setRYValue()</slot>
+    <slot>setRZValue()</slot>
+    <slot>setLPXValue()</slot>
+    <slot>setLPYValue()</slot>
+    <slot>setLPZValue()</slot>
+    <slot>setFCRValue()</slot>
+    <slot>setFCGValue()</slot>
+    <slot>setFCBValue()</slot>
+    <slot>setLCRValue()</slot>
+    <slot>setLCGValue()</slot>
+    <slot>setLCBValue()</slot>
+    <slot>setACRValue()</slot>
+    <slot>setACGValue()</slot>
+    <slot>setACBValue()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>RXValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setRXValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>98</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>24</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RYValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setRYValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>100</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RZValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setRZValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>564</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>428</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LPXValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setLPXValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LPYValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setLPYValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>210</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LPZValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setLPZValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>581</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>FCRValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setFCRValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>589</x>
+     <y>298</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>390</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>FCGValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setFCGValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>616</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>FCBValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setFCBValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>577</x>
+     <y>334</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>441</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LCRValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setLCRValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>573</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>420</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LCGValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setLCGValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>609</x>
+     <y>410</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>404</x>
+     <y>412</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>LCBValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setLCBValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>574</x>
+     <y>429</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>434</x>
+     <y>461</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ACRValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setACRValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>480</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>478</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ACGValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setACGValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>608</x>
+     <y>507</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>428</x>
+     <y>519</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ACBValue</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>setACBValue()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>599</x>
+     <y>523</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>466</x>
+     <y>543</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

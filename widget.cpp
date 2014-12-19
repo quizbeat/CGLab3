@@ -31,3 +31,13 @@ void Widget::mouseMoveEvent(QMouseEvent *mEvent) {
     lastY = mEvent->y();
     update();
 }
+
+void Widget::on_SelectFigure_currentIndexChanged(const QString &arg1)
+{
+
+}
+
+void Widget::on_RXValue_valueChanged(int value)
+{
+
+}
